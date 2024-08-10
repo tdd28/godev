@@ -21,9 +21,7 @@ func (c *Cmd) Stop() error {
 }
 
 func (c *Cmd) Restart() error {
-	if err := c.Stop(); err != nil {
-		return err
-	}
+	c.Stop()
 	c.Wait()
 	c.init(c.Args[0], c.Args[1:]...)
 	return c.Start()
